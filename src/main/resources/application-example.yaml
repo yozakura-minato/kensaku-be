@@ -1,0 +1,11 @@
+# Instruction: Create "application.yaml" file as below with filled variables ${DATABASE_...}.
+
+spring:
+  application:
+    name: kensaku-be
+
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
