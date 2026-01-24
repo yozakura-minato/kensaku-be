@@ -38,8 +38,12 @@ public class SearchData {
 
     @Column(name = "output_2")
     private String output2;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdDateTime;
     private LocalDateTime lastModifiedDateTime;
+
+    @Column(columnDefinition = "boolean default false")
     private boolean isDeleted;
     private LocalDateTime deletedDateTime;
 

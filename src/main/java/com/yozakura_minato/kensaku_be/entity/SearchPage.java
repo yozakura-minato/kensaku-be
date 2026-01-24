@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.FetchType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +25,8 @@ public class SearchPage {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User owner;
+
+    @Column(unique = true, nullable = false)
     private String pageName;
     private String description;
     private String searchInstruction;
@@ -39,12 +42,16 @@ public class SearchPage {
 
     @Column(name = "output_2_label")
     private String output2Label;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdDateTime;
     private LocalDateTime lastModifiedDateTime;
+
+    @Column(columnDefinition = "boolean default false")
     private boolean isDeleted;
     private LocalDateTime deletedDateTime;
 
-    @OneToMany(mappedBy = "searchPage")
+    @OneToMany(mappedBy = "searchPage", fetch = FetchType.EAGER)
     private List<SearchData> searchData;
 
     public int getPageId() {

@@ -6,24 +6,32 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = @Index(columnList = "email"))
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+
+    @Column(unique = true, nullable = false)
     private String email;
     private String displayName;
+
+    @Column(nullable = false)
     private String hashedPassword;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdDateTime;
     private LocalDateTime lastModifiedDateTime;
+
+    @Column(columnDefinition = "boolean default false")
     private boolean isDeleted;
     private LocalDateTime deletedDateTime;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<SearchPage> searchPages;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<SearchData> searchData;
 
     public int getUserId() {
