@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         // Check email
         User existEmail = userRepository.findByEmail(userReqDto.getEmail());
         if (existEmail != null) {
-            throw new RuntimeException("AUTH.SIGN_UP.EMAIL_EXISTS");
+            throw new RuntimeException("SIGN_UP.EXCEPTION.EMAIL_EXISTS");
         }
         User newUser = userMapper.reqDtoToEntity(userReqDto);
         // Hash password

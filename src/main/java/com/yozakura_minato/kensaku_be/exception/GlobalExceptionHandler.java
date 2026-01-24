@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handlingMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<FieldError> errors = exception.getFieldErrors();
         if(errors.isEmpty()) {
-            return ResponseEntity.badRequest().body("unknown.valid.exception");
+            return ResponseEntity.badRequest().body("GENERAL.EXCEPTION.UNKNOWN");
         }
         return ResponseEntity.badRequest().body(errors.getFirst().getDefaultMessage());
     }
