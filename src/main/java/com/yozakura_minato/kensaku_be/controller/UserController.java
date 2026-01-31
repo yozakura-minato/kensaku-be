@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controllers for users
+ */
 @RestController
 @RequestMapping("/")
 public class UserController {
@@ -17,6 +20,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Controller to handle sign up
+     * @param userReqDto User request DTO
+     * @return User response DTO
+     */
     @PostMapping("/auth/sign-up")
     UserResponseDto signUp(@RequestBody @Valid UserRequestDto userReqDto) {
         return userService.signUp(userReqDto);

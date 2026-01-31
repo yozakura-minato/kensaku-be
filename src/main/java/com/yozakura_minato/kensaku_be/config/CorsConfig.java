@@ -13,6 +13,7 @@ public class CorsConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        // Allows all request from FE URL
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
         corsConfiguration.setAllowedMethods(List.of("*"));
@@ -24,4 +25,5 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
     }
+
 }

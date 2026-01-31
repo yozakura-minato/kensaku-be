@@ -40,4 +40,5 @@ public class UserServiceImpl implements UserService {
         userRepository.save(newUser);
         return userMapper.entityToResDto(newUser);
     }
+
 }

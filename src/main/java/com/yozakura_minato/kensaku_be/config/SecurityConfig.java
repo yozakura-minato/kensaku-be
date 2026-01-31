@@ -16,6 +16,7 @@ class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
+                        // Authentication is not required in requests that come from the following URLs
                         .requestMatchers("/auth/**", "/search").permitAll()
                         .anyRequest().authenticated()
                 );

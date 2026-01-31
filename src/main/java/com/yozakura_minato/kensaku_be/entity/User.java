@@ -13,18 +13,39 @@ import jakarta.persistence.FetchType;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Entity for users
+ */
 @Entity
 @Table(name = "users", indexes = @Index(columnList = "email"))
 public class User {
 
+    // ============ ATTRIBUTES ============ //
+    /**
+     * ID of this user
+     * (auto generated)
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
+    /**
+     * Email of this user
+     * (unique, required)
+     */
     @Column(unique = true, nullable = false)
     private String email;
+
+    /**
+     * Display name of this user
+     * (not unique, required)
+     */
     private String displayName;
 
+    /**
+     * Hashed password of this user
+     * (required)
+     */
     @Column(nullable = false)
     private String hashedPassword;
 
@@ -42,10 +63,10 @@ public class User {
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<SearchData> searchData;
 
+    // ============ GETTERS & SETTERS ============ //
     public int getUserId() {
         return userId;
     }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -53,7 +74,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -61,7 +81,6 @@ public class User {
     public String getDisplayName() {
         return displayName;
     }
-
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
@@ -69,7 +88,6 @@ public class User {
     public String getHashedPassword() {
         return hashedPassword;
     }
-
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }
@@ -77,7 +95,6 @@ public class User {
     public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
     }
-
     public void setCreatedDateTime(LocalDateTime createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
@@ -85,7 +102,6 @@ public class User {
     public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
-
     public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
@@ -93,7 +109,6 @@ public class User {
     public boolean isDeleted() {
         return isDeleted;
     }
-
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
     }
@@ -101,7 +116,6 @@ public class User {
     public LocalDateTime getDeletedDateTime() {
         return deletedDateTime;
     }
-
     public void setDeletedDateTime(LocalDateTime deletedDateTime) {
         this.deletedDateTime = deletedDateTime;
     }
@@ -109,7 +123,6 @@ public class User {
     public List<SearchPage> getSearchPages() {
         return searchPages;
     }
-
     public void setSearchPages(List<SearchPage> searchPages) {
         this.searchPages = searchPages;
     }
@@ -117,8 +130,8 @@ public class User {
     public List<SearchData> getSearchData() {
         return searchData;
     }
-
     public void setSearchData(List<SearchData> searchData) {
         this.searchData = searchData;
     }
+
 }
