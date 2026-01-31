@@ -12,4 +12,5 @@ You are now in the **BACKEND REPOSITORY**. Explore more at:
 * PostgreSQL
 
 ### **Set Up**
-Create ```application.yaml``` file as ```application-example.yaml``` with filled variables ```${DATABASE_...}```.
+1. Create a local PostgreSQL database.
+2. Follow instructions in ```application-example.yaml``` file.

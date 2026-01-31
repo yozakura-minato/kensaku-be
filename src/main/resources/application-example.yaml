@@ -1,5 +1,4 @@
-# Instruction: Create "application.yaml" file as below with filled variables ${DATABASE_...}.
-
+# (1) Create "application.yaml" file as below with filled variables ${DATABASE_...}.
 spring:
   application:
     name: kensaku-be
@@ -10,6 +9,7 @@ spring:
     password: ${DATABASE_PASSWORD}
     driverClassName: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update
+# (2) In fist run time only, uncomment the following lines for table auto-generation:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
