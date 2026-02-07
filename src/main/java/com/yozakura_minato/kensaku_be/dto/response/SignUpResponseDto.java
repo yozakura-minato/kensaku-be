@@ -1,9 +1,9 @@
-package com.yozakura_minato.kensaku_be.dto;
+package com.yozakura_minato.kensaku_be.dto.response;
 
 /**
- * Response DTO for users
+ * Response DTO for sign up
  */
-public class UserResponseDto {
+public class SignUpResponseDto {
 
     // ============ ATTRIBUTES ============ //
     /**

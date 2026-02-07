@@ -1,10 +1,9 @@
 package com.yozakura_minato.kensaku_be.mapper;
 
-import com.yozakura_minato.kensaku_be.dto.UserRequestDto;
-import com.yozakura_minato.kensaku_be.dto.UserResponseDto;
+import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
+import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
 import com.yozakura_minato.kensaku_be.entity.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
 
 /**
  * Map struct object for users
@@ -12,26 +11,19 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
+    // ============ SIGN UP MAPPERS ============ //
     /**
-     * Method to convert from User request DTO to User entity
-     * @param userRequestDto User request DTO
-     * @return User response DTO
+     * Method to convert from Sign up request DTO to User entity
+     * @param signUpReq Sign up request DTO
+     * @return User Entity
      */
-    User reqDtoToEntity(UserRequestDto userRequestDto);
+    User signUpReqToEntity(SignUpRequestDto signUpReq);
 
     /**
-     * Method to convert from User entity to User response DTO
+     * Method to convert from User entity to Sign up response DTO
      * @param user User entity
-     * @return User response DTO
+     * @return Sign up response DTO
      */
-    UserResponseDto entityToResDto(User user);
-
-    /**
-     * Method to update User entity data from User request DTO
-     * @param userRequestDto User request DTO
-     * @param user User entity
-     * @return void
-     */
-    User updateDtoToEntity(UserRequestDto userRequestDto, @MappingTarget User user);
+    SignUpResponseDto signUpEntityToRes(User user);
 
 }

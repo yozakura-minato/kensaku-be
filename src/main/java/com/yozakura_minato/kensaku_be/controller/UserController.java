@@ -1,7 +1,7 @@
 package com.yozakura_minato.kensaku_be.controller;
 
-import com.yozakura_minato.kensaku_be.dto.UserRequestDto;
-import com.yozakura_minato.kensaku_be.dto.UserResponseDto;
+import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
+import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
 import com.yozakura_minato.kensaku_be.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class UserController {
 
     /**
      * Controller to handle sign up
-     * @param userReqDto User request DTO
-     * @return User response DTO
+     * @param signUpReq Sign up request DTO
+     * @return Sign up response DTO
      */
     @PostMapping("/auth/sign-up")
-    UserResponseDto signUp(@RequestBody @Valid UserRequestDto userReqDto) {
-        return userService.signUp(userReqDto);
+    SignUpResponseDto signUp(@RequestBody @Valid SignUpRequestDto signUpReq) {
+        return userService.signUp(signUpReq);
     }
 
 }
