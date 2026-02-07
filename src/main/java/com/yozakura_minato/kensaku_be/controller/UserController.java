@@ -27,6 +27,17 @@ public class UserController {
      */
     @PostMapping("/auth/sign-up")
     SignUpResponseDto signUp(@RequestBody @Valid SignUpRequestDto signUpReq) {
+        String password = signUpReq.getPassword();
+        int typeNumber = 0;
+        typeNumber += password.matches(".*[A-Z].*") ? 1 : 0;
+        typeNumber += password.matches(".*[a-z].*") ? 1 : 0;
+        typeNumber += password.matches(".*[0-9].*") ? 1 : 0;
+        typeNumber += password.matches(".*[^A-Za-z0-9].*") ? 1 : 0;
+
+        // Password must include at least 2 type of character
+        if (typeNumber < 2) {
+            throw new RuntimeException("PASSWORD_FORMAT.SIGN_UP.EXCEPTION");
+        }
         return userService.signUp(signUpReq);
     }
 

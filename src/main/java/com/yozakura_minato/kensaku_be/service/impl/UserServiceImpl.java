@@ -26,17 +26,6 @@ public class UserServiceImpl implements UserService {
 
     public SignUpResponseDto signUp(SignUpRequestDto signUpReq) {
 
-        // Check password format
-        String password = signUpReq.getPassword();
-        int typeNumber = 0;
-        typeNumber += password.matches(".*[A-Z].*") ? 1 : 0;
-        typeNumber += password.matches(".*[a-z].*") ? 1 : 0;
-        typeNumber += password.matches(".*[0-9].*") ? 1 : 0;
-        typeNumber += password.matches(".*[^A-Za-z0-9].*") ? 1 : 0;
-        if (typeNumber < 2) {
-            throw new RuntimeException("PASSWORD_FORMAT.SIGN_UP.EXCEPTION");
-        }
-
         // Check exists email
         User existEmail = userRepository.findByEmail(signUpReq.getEmail());
         if (existEmail != null) {
@@ -45,6 +34,7 @@ public class UserServiceImpl implements UserService {
         User newUser = userMapper.signUpReqToEntity(signUpReq);
 
         // Hash password
+        String password = signUpReq.getPassword();
         String hashedPassword = passwordEncoder.encode(password);
         newUser.setHashedPassword(hashedPassword);
 
