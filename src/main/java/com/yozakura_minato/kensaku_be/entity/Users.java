@@ -10,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.FetchType;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "users", indexes = @Index(columnList = "email"))
+@DynamicInsert
 @Getter
 @Setter
 public class Users implements UserDetails {
