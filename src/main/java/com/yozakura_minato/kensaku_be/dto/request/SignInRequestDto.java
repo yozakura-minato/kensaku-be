@@ -23,4 +23,11 @@ public class SignInRequestDto {
     @NotBlank(message = SignInException.Password.nulls)
     private String password;
 
+    /**
+     * Trim {@code password}
+     */
+    public void normalize() {
+        password = password.trim();
+    }
+
 }

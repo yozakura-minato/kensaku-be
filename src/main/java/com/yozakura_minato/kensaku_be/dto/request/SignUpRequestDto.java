@@ -24,12 +24,20 @@ public class SignUpRequestDto {
     private String email;
 
     @NotBlank(message = SignUpException.DisplayName.nulls)
-    @Size(min = 3, max = 30, message = SignUpException.DisplayName.length) // Only letters (lower/upper), numbers and space are allowed
+    @Size(min = 3, max = 30, message = SignUpException.DisplayName.length)
     @Pattern(regexp = "^[A-za-z0-9 ]+$", message = SignUpException.DisplayName.format)
     private String displayName;
 
     @NotBlank(message = SignUpException.Password.nulls)
     @Size(min = 8, max = 50, message = SignUpException.Password.length)
     private String password;
+
+    /**
+     * Trim {@code displayName}, {@code password}
+     */
+    public void normalize() {
+        displayName = displayName.trim();
+        password = password.trim();
+    }
 
 }

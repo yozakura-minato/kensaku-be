@@ -4,7 +4,6 @@ import com.yozakura_minato.kensaku_be.dto.request.SignInRequestDto;
 import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
-import com.yozakura_minato.kensaku_be.util.helper.KenSakuNormalizer;
 import com.yozakura_minato.kensaku_be.util.helper.KenSakuValidator;
 import com.yozakura_minato.kensaku_be.service.UserService;
 import jakarta.validation.Valid;
@@ -24,7 +23,7 @@ public class UserController {
      */
     @PostMapping("sign-up")
     SignUpResponseDto signUp(@RequestBody @Valid SignUpRequestDto signUpReq) {
-        KenSakuNormalizer.normalize(signUpReq);
+        signUpReq.normalize();
         KenSakuValidator.validatePassword(signUpReq.getPassword());
         return userService.signUp(signUpReq);
     }
@@ -35,7 +34,7 @@ public class UserController {
      */
     @PostMapping("/sign-in")
     SignInResponseDto signIn(@RequestBody @Valid SignInRequestDto signInReq) {
-        KenSakuNormalizer.normalize(signInReq);
+        signInReq.normalize();
         return userService.signIn(signInReq);
     }
 
