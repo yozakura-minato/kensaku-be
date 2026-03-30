@@ -1,6 +1,6 @@
 package com.yozakura_minato.kensaku_be.dto.request;
 
-import com.yozakura_minato.kensaku_be.util.message.SignInException;
+import com.yozakura_minato.kensaku_be.exception.message.SignInException;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;

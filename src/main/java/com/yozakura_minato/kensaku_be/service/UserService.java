@@ -4,7 +4,7 @@ import com.yozakura_minato.kensaku_be.dto.request.SignInRequestDto;
 import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
-import com.yozakura_minato.kensaku_be.util.message.SignUpException;
+import com.yozakura_minato.kensaku_be.exception.message.SignUpException;
 
 public interface UserService {
 

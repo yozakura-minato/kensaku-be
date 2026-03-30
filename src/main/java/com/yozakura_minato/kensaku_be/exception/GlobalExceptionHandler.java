@@ -1,7 +1,7 @@
 package com.yozakura_minato.kensaku_be.exception;
 
-import com.yozakura_minato.kensaku_be.util.message.AuthenticationException;
-import com.yozakura_minato.kensaku_be.util.message.GeneralException;
+import com.yozakura_minato.kensaku_be.exception.message.AuthenticationException;
+import com.yozakura_minato.kensaku_be.exception.message.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

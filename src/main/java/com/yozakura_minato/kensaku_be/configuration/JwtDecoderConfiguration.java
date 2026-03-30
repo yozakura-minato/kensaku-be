@@ -1,7 +1,7 @@
 package com.yozakura_minato.kensaku_be.configuration;
 
 import com.nimbusds.jose.JOSEException;
-import com.yozakura_minato.kensaku_be.util.message.AuthenticationException;
+import com.yozakura_minato.kensaku_be.exception.message.AuthenticationException;
 import com.yozakura_minato.kensaku_be.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

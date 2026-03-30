@@ -9,7 +9,7 @@ import com.yozakura_minato.kensaku_be.mapper.UserMapper;
 import com.yozakura_minato.kensaku_be.repository.UserRepository;
 import com.yozakura_minato.kensaku_be.service.JwtService;
 import com.yozakura_minato.kensaku_be.service.UserService;
-import com.yozakura_minato.kensaku_be.util.message.SignUpException;
+import com.yozakura_minato.kensaku_be.exception.message.SignUpException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

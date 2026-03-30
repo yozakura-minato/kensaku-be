@@ -1,4 +1,4 @@
-package com.yozakura_minato.kensaku_be.util.message;
+package com.yozakura_minato.kensaku_be.exception.message;
 
 /**
  * Exception messages for sign up

@@ -2,7 +2,7 @@ package com.yozakura_minato.kensaku_be.service.implement;
 
 import com.yozakura_minato.kensaku_be.entity.Users;
 import com.yozakura_minato.kensaku_be.repository.UserRepository;
-import com.yozakura_minato.kensaku_be.util.message.SignInException;
+import com.yozakura_minato.kensaku_be.exception.message.SignInException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

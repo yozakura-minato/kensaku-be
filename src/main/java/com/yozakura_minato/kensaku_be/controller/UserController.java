@@ -4,7 +4,6 @@ import com.yozakura_minato.kensaku_be.dto.request.SignInRequestDto;
 import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
-import com.yozakura_minato.kensaku_be.util.helper.KenSakuValidator;
 import com.yozakura_minato.kensaku_be.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ public class UserController {
     @PostMapping("sign-up")
     SignUpResponseDto signUp(@RequestBody @Valid SignUpRequestDto signUpReq) {
         signUpReq.normalize();
-        KenSakuValidator.validatePassword(signUpReq.getPassword());
         return userService.signUp(signUpReq);
     }
 
