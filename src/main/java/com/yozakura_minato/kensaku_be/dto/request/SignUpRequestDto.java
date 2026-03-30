@@ -1,10 +1,7 @@
 package com.yozakura_minato.kensaku_be.dto.request;
 
-import com.yozakura_minato.kensaku_be.util.message.SignUpException;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.Pattern;
+import com.yozakura_minato.kensaku_be.exception.message.SignUpException;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 /**
@@ -31,6 +28,28 @@ public class SignUpRequestDto {
     @NotBlank(message = SignUpException.Password.nulls)
     @Size(min = 8, max = 50, message = SignUpException.Password.length)
     private String password;
+
+    /**
+     * <p>Validate plain password strength</p>
+     * <p><b>Criteria</b>: The trimmed password must contains at least 2 of below types:</p>
+     * <ul>
+     *     <li>Upper letter</li>
+     *     <li>Lower letter</li>
+     *     <li>Number</li>
+     *     <li>Special character</li>
+     * </ul>
+     * @return Check result
+     */
+    @AssertTrue(message = SignUpException.Password.format)
+    public boolean isPasswordStrength() {
+        String normalizedPassword = password.trim();
+        int typeNumber = 0;
+        typeNumber += normalizedPassword.matches(".*[A-Z].*") ? 1 : 0;
+        typeNumber += normalizedPassword.matches(".*[a-z].*") ? 1 : 0;
+        typeNumber += normalizedPassword.matches(".*[0-9].*") ? 1 : 0;
+        typeNumber += normalizedPassword.matches(".*[^A-Za-z0-9].*") ? 1 : 0;
+        return typeNumber >= 2;
+    }
 
     /**
      * Trim {@code displayName}, {@code password}
