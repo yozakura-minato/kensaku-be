@@ -22,7 +22,6 @@ public class UserController {
      */
     @PostMapping("sign-up")
     SignUpResponseDto signUp(@RequestBody @Valid SignUpRequestDto signUpReq) {
-        signUpReq.normalize();
         return userService.signUp(signUpReq);
     }
 
@@ -32,7 +31,6 @@ public class UserController {
      */
     @PostMapping("/sign-in")
     SignInResponseDto signIn(@RequestBody @Valid SignInRequestDto signInReq) {
-        signInReq.normalize();
         return userService.signIn(signInReq);
     }
 
