@@ -21,6 +21,10 @@ security:
     url: "${YOUR_FRONTEND_URL}"               # <-- Pass here
   be:
     public-paths: "/sign-up,/sign-in,/reset-password,/search/**"
+  db:
+    redis:
+      host: ${YOUR_REDIS_HOST}                # <-- Pass here
+      port: ${YOUR_REDIS_PORT}                # <-- Pass here
   jwt:
     access-token:
       validity-minutes: 30
