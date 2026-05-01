@@ -1,6 +1,8 @@
 package com.yozakura_minato.kensaku_be.service;
 
 import com.nimbusds.jose.*;
+import com.yozakura_minato.kensaku_be.dto.JwtInformation;
+import com.yozakura_minato.kensaku_be.dto.TokenPayload;
 import com.yozakura_minato.kensaku_be.entity.Users;
 
 import java.text.ParseException;
@@ -17,11 +19,12 @@ public interface JwtService {
      *     <li>Issue time: current (Date)</li>
      *     <li>Epiration time: {@code security.jwt.access-token.validity-minutes} after</li>
      * </ul>
+     *
      * @param user (Users)
      * @return (String)
      * @throws JOSEException
      */
-    String generateAccessToken(Users user);
+    TokenPayload generateAccessToken(Users user);
 
     /**
      * <p>Refresh token information:</p>
@@ -33,11 +36,12 @@ public interface JwtService {
      *     <li>Issue time: current (Date)</li>
      *     <li>Epiration time: {@code security.jwt.refresh-token.validity-days} after</li>
      * </ul>
+     *
      * @param user (Users)
      * @return (String)
      * @throws JOSEException
      */
-    String generateRefreshToken(Users user);
+    TokenPayload generateRefreshToken(Users user);
 
     /**
      * Verify for token expiration time
@@ -45,5 +49,7 @@ public interface JwtService {
      * @return (boolean)
      */
     boolean verifyToken(String token) throws ParseException, JOSEException;
+
+    JwtInformation parseToken(String token) throws ParseException;
 
 }

@@ -6,6 +6,8 @@ import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
 import com.yozakura_minato.kensaku_be.exception.message.SignUpException;
 
+import java.text.ParseException;
+
 public interface UserService {
 
     /**
@@ -21,5 +23,10 @@ public interface UserService {
      * @throws AssertionError
      */
     SignInResponseDto signIn(SignInRequestDto signInReq);
+
+    /**
+     * @param token (String)
+     */
+    void signOut(String token) throws ParseException;
 
 }

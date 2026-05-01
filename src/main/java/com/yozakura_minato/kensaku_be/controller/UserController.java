@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/")
 public class UserController {
@@ -37,6 +39,12 @@ public class UserController {
     @GetMapping("auth-test")
     String authTest() {
         return "Hello World!";
+    }
+
+    @PostMapping("/sign-out")
+    void signOut(@RequestHeader("Authorization") String authenticationHeader) throws ParseException {
+        String token = authenticationHeader.replace("Bearer", "");
+        userService.signOut(token);
     }
 
 }
