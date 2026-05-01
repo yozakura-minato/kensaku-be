@@ -15,9 +15,11 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <p>Attributes:</p>
@@ -46,8 +48,8 @@ public class Users implements UserDetails {
 
     // ============ ATTRIBUTES ============ //
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    @GeneratedValue
+    private UUID userId;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -58,14 +60,14 @@ public class Users implements UserDetails {
     private String hashedPassword;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime createdDateTime;
+    private Instant createdDateTime;
 
-    private LocalDateTime lastModifiedDateTime;
+    private Instant lastModifiedDateTime;
 
     @Column(columnDefinition = "boolean default false")
     private boolean isDeleted;
 
-    private LocalDateTime deletedDateTime;
+    private Instant deletedDateTime;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<SearchPages> searchPages;

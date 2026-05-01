@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.FetchType;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class SearchPages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int pageId;
+    private long pageId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -71,14 +72,14 @@ public class SearchPages {
     private String output2Label;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime createdDateTime;
+    private Instant createdDateTime;
 
-    private LocalDateTime lastModifiedDateTime;
+    private Instant lastModifiedDateTime;
 
     @Column(columnDefinition = "boolean default false")
     private boolean isDeleted;
 
-    private LocalDateTime deletedDateTime;
+    private Instant deletedDateTime;
 
     @OneToMany(mappedBy = "searchPages", fetch = FetchType.EAGER)
     private List<SearchData> searchData;

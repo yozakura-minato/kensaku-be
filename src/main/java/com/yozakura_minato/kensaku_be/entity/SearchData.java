@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 /**
@@ -38,7 +39,7 @@ public class SearchData {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int dataId;
+    private long dataId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -61,13 +62,13 @@ public class SearchData {
     private String output2;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime createdDateTime;
+    private Instant createdDateTime;
 
-    private LocalDateTime lastModifiedDateTime;
+    private Instant lastModifiedDateTime;
 
     @Column(columnDefinition = "boolean default false")
     private boolean isDeleted;
 
-    private LocalDateTime deletedDateTime;
+    private Instant deletedDateTime;
 
 }
