@@ -1,7 +1,7 @@
 package com.yozakura_minato.kensaku_be.service.implement;
 
-import com.yozakura_minato.kensaku_be.dto.JwtInformation;
-import com.yozakura_minato.kensaku_be.dto.TokenPayload;
+import com.yozakura_minato.kensaku_be.dto.internal.JwtInformation;
+import com.yozakura_minato.kensaku_be.dto.internal.TokenPayload;
 import com.yozakura_minato.kensaku_be.dto.request.SignInRequestDto;
 import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
 import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
@@ -54,14 +54,14 @@ public class UserServiceImplement implements UserService {
     public SignUpResponseDto signUp(SignUpRequestDto signUpReq) {
 
         // Check for exists email
-        Users existEmail = userRepository.findByEmail(signUpReq.getEmail());
+        Users existEmail = userRepository.findByEmail(signUpReq.email());
         if (existEmail != null) {
             throw new RuntimeException(SignUpException.Email.exits);
         }
         Users newUser = userMapper.signUpReqToEntity(signUpReq);
 
         // Hash password
-        String password = signUpReq.getPassword();
+        String password = signUpReq.password();
         String hashedPassword = passwordEncoder.encode(password);
         newUser.setHashedPassword(hashedPassword);
 
@@ -77,8 +77,8 @@ public class UserServiceImplement implements UserService {
     public SignInResponseDto signIn(SignInRequestDto signInReq) {
         // Check for (username, hashedPassword)
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                signInReq.getEmail(),
-                signInReq.getPassword()
+                signInReq.email(),
+                signInReq.password()
         );
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         Users user = (Users) authentication.getPrincipal();
@@ -88,12 +88,12 @@ public class UserServiceImplement implements UserService {
         TokenPayload accessTokenPayload = jwtService.generateAccessToken(user);
         TokenPayload refreshTokenPayload = jwtService.generateRefreshToken(user);
 
-        RedisToken redisToken = RedisToken.builder()
-                .jwtId(refreshTokenPayload.getJwtId())
-                .expirationTime(refreshTokenPayload.getExpirationTime().getTime())
-                .build();
-
-        redisTokenRepository.save(redisToken);
+//        RedisToken redisToken = RedisToken.builder()
+//                .jwtId(refreshTokenPayload.getJwtId())
+//                .expirationTime(refreshTokenPayload.getExpirationTime().getTime())
+//                .build();
+//
+//        redisTokenRepository.save(redisToken);
 
         return SignInResponseDto
                 .builder()

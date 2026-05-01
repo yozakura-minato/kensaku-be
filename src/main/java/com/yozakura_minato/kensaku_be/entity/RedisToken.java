@@ -9,6 +9,13 @@ import org.springframework.data.redis.core.TimeToLive;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * <p>Attributes:</p>
+ * <ul>
+ *     <li>{@code jwtId}: String</li>
+ *     <li>{@code expirationTime}: long</li>
+ * </ul>
+ */
 @Setter
 @Getter
 @Builder

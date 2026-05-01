@@ -1,8 +1,8 @@
 package com.yozakura_minato.kensaku_be.service;
 
 import com.nimbusds.jose.*;
-import com.yozakura_minato.kensaku_be.dto.JwtInformation;
-import com.yozakura_minato.kensaku_be.dto.TokenPayload;
+import com.yozakura_minato.kensaku_be.dto.internal.JwtInformation;
+import com.yozakura_minato.kensaku_be.dto.internal.TokenPayload;
 import com.yozakura_minato.kensaku_be.entity.Users;
 
 import java.text.ParseException;
