@@ -1,4 +1,4 @@
-package com.yozakura_minato.kensaku_be.dto;
+package com.yozakura_minato.kensaku_be.dto.internal;
 
 import lombok.Builder;
 import lombok.Getter;
