@@ -10,7 +10,7 @@ import java.lang.annotation.*;
  * Destination value: {@code null} if the plain string is null or contains only spaces, else returns {@code stripped value}.
  */
 @Documented
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.RECORD_COMPONENT})
 @Retention(RetentionPolicy.RUNTIME)
 @JacksonAnnotationsInside
 @JsonDeserialize(using = StringNormalizingDeserializer.class)

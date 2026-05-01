@@ -16,7 +16,7 @@ import java.lang.annotation.*;
  */
 @Documented
 @Constraint(validatedBy = PasswordStrengthValidator.class)
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.RECORD_COMPONENT})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IsStrongPassword {
 

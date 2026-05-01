@@ -1,6 +1,6 @@
 package com.yozakura_minato.kensaku_be.dto.response;
 
-import lombok.*;
+import java.util.UUID;
 
 /**
  * <p>Attributes:</p>
@@ -10,12 +10,10 @@ import lombok.*;
  *     <li>{@code displayName} - (String)</li>
  * </ul>
  */
-@Getter
-@Setter
-public class SignUpResponseDto {
+public record SignUpResponseDto (
 
-    private int userId;
-    private String email;
-    private String displayName;
+    UUID userId,
+    String email,
+    String displayName
 
-}
+) {};

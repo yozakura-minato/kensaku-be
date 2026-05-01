@@ -1,6 +1,6 @@
 package com.yozakura_minato.kensaku_be.dto.response;
 
-import lombok.*;
+import lombok.Builder;
 
 /**
  * <p>Attributes:</p>
@@ -9,12 +9,10 @@ import lombok.*;
  *     <li>{@code refreshToken} - (String)</li>
  * </ul>
  */
-@Getter
-@Setter
 @Builder
-public class SignInResponseDto {
+public record SignInResponseDto (
 
-    private String accessToken;
-    private String refreshToken;
+    String accessToken,
+    String refreshToken
 
-}
+) {};

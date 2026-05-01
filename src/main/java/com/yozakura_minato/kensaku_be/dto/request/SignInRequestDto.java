@@ -5,7 +5,6 @@ import com.yozakura_minato.kensaku_be.annotation.normalizedString.NormalizedStri
 import com.yozakura_minato.kensaku_be.exception.message.SignInException;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
 
 /**
  * <p>Attributes:</p>
@@ -14,17 +13,15 @@ import lombok.*;
  *     <li>{@code password} - (String) plain password</li>
  * </ul>
  */
-@Getter
-@Setter
-public class SignInRequestDto {
+public record SignInRequestDto (
 
     @NormalizedEmail
     @NotBlank(message = SignInException.Email.nulls)
     @Email(message = SignInException.Email.format)
-    private String email;
+    String email,
 
     @NormalizedString
     @NotBlank(message = SignInException.Password.nulls)
-    private String password;
+    String password
 
-}
+) {};
