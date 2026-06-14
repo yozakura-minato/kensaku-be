@@ -1,18 +1,14 @@
 package com.yozakura_minato.kensaku_be.repository;
 
-import com.yozakura_minato.kensaku_be.entity.User;
+import com.yozakura_minato.kensaku_be.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- * Repository for users
- */
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<Users, Integer> {
 
     /**
-     * Method to find user from email
-     * @param email string
-     * @return User entity
+     * @param email (string)
+     * @return (Users)
      */
-    User findByEmail(String email);
+    Users findByEmail(String email);
 
 }

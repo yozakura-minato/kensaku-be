@@ -1,18 +1,16 @@
 package com.yozakura_minato.kensaku_be.controller;
 
-import com.yozakura_minato.kensaku_be.dto.UserRequestDto;
-import com.yozakura_minato.kensaku_be.dto.UserResponseDto;
+import com.yozakura_minato.kensaku_be.dto.request.SignInRequestDto;
+import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
+import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
+import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
 import com.yozakura_minato.kensaku_be.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-/**
- * Controllers for users
- */
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/")
 public class UserController {
@@ -21,13 +19,32 @@ public class UserController {
     private UserService userService;
 
     /**
-     * Controller to handle sign up
-     * @param userReqDto User request DTO
-     * @return User response DTO
+     * @param signUpReq (SignUpResponseDto)
+     * @return (SignUpResponseDto)
      */
-    @PostMapping("/auth/sign-up")
-    UserResponseDto signUp(@RequestBody @Valid UserRequestDto userReqDto) {
-        return userService.signUp(userReqDto);
+    @PostMapping("sign-up")
+    SignUpResponseDto signUp(@RequestBody @Valid SignUpRequestDto signUpReq) {
+        return userService.signUp(signUpReq);
+    }
+
+    /**
+     * @param signInReq (SignInRequestDto)
+     * @return (SignInResponseDto)
+     */
+    @PostMapping("/sign-in")
+    SignInResponseDto signIn(@RequestBody @Valid SignInRequestDto signInReq) {
+        return userService.signIn(signInReq);
+    }
+
+    @GetMapping("auth-test")
+    String authTest() {
+        return "Hello World!";
+    }
+
+    @PostMapping("/sign-out")
+    void signOut(@RequestHeader("Authorization") String authenticationHeader) throws ParseException {
+        String token = authenticationHeader.replace("Bearer", "");
+        userService.signOut(token);
     }
 
 }

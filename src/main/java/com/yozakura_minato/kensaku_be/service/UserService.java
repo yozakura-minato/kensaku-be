@@ -1,18 +1,32 @@
 package com.yozakura_minato.kensaku_be.service;
 
-import com.yozakura_minato.kensaku_be.dto.UserRequestDto;
-import com.yozakura_minato.kensaku_be.dto.UserResponseDto;
+import com.yozakura_minato.kensaku_be.dto.request.SignInRequestDto;
+import com.yozakura_minato.kensaku_be.dto.request.SignUpRequestDto;
+import com.yozakura_minato.kensaku_be.dto.response.SignInResponseDto;
+import com.yozakura_minato.kensaku_be.dto.response.SignUpResponseDto;
+import com.yozakura_minato.kensaku_be.exception.message.SignUpException;
 
-/**
- * Services for users
- */
+import java.text.ParseException;
+
 public interface UserService {
 
     /**
-     * Service to handle sign up
-     * @param userReqDto User request DTO
-     * @return User response DTO
+     * @param signUpReq (SignUpRequestDto)
+     * @return (SignUpResponseDto)
+     * @throws SignUpException email exits
      */
-    UserResponseDto signUp(UserRequestDto userReqDto);
+    SignUpResponseDto signUp(SignUpRequestDto signUpReq);
+
+    /**
+     * @param signInReq (SignInRequestDto)
+     * @return (SignInResponseDto)
+     * @throws AssertionError
+     */
+    SignInResponseDto signIn(SignInRequestDto signInReq);
+
+    /**
+     * @param token (String)
+     */
+    void signOut(String token) throws ParseException;
 
 }
